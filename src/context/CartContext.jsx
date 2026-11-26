@@ -12,8 +12,6 @@ export function CartProvider({ children }) {
       return [];
     }
   });
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [toasts, setToasts] = useState([]);
 
   useEffect(() => {
@@ -29,7 +27,7 @@ export function CartProvider({ children }) {
     setToasts((prev) => [...prev, { id, message, type }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 2800);
+    }, 2600);
   };
 
   const dismissToast = (id) => {
@@ -45,7 +43,7 @@ export function CartProvider({ children }) {
     setItems((prev) => {
       const existing = prev.find((i) => Number(i.id) === Number(product.id));
       if (existing) {
-        const nextQty = Math.min(existing.quantity + quantity, product.stock);
+        const nextQty = Math.min(existing.quantity + quantity, product.stock || 99);
         return prev.map((i) =>
           Number(i.id) === Number(product.id) ? { ...i, quantity: nextQty } : i
         );
@@ -59,9 +57,9 @@ export function CartProvider({ children }) {
           sku: product.sku,
           price: Number(product.price),
           image_url: product.image_url,
-          stock: Number(product.stock),
+          stock: Number(product.stock || 99),
           categoryName: product.category?.name || 'Product',
-          quantity: Math.min(quantity, product.stock),
+          quantity: Math.min(quantity, product.stock || 99),
         },
       ];
     });
@@ -108,10 +106,6 @@ export function CartProvider({ children }) {
     clearCart,
     cartCount,
     subtotal,
-    isDrawerOpen,
-    setIsDrawerOpen,
-    searchQuery,
-    setSearchQuery,
     toasts,
     showToast,
     dismissToast,

@@ -1,5 +1,4 @@
-import { Copy, Database, Download, ExternalLink, Link2 } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { Database, Download, ExternalLink, Link2 } from 'lucide-react';
 
 const TABLES = [
   {
@@ -83,40 +82,22 @@ const RELATIONS = [
   { from: 'products.id', to: 'order_items.product_id', label: 'ordered_in (1 : 0..N)' },
 ];
 
-const MERMAID_SNIPPET = `erDiagram
-    customers ||--o{ orders : "places"
-    categories ||--o{ products : "contains"
-    orders ||--|{ order_items : "includes"
-    products ||--o{ order_items : "ordered_in"`;
-
 export default function ErdPage() {
-  const { showToast } = useCart();
-
-  const copyMermaid = async () => {
-    try {
-      await navigator.clipboard.writeText(MERMAID_SNIPPET);
-      showToast('Mermaid ERD snippet copied to clipboard');
-    } catch {
-      showToast('Clipboard blocked by browser', 'error');
-    }
-  };
-
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Header Banner */}
-      <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs sm:p-8">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase">
               <Database className="h-3.5 w-3.5" />
-              Step 1 Architecture · 5 Normalized Tables
-            </span>
-            <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
+              Database Design · 5 Tables
+            </div>
+            <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
               E-Commerce Order Database ERD
             </h1>
             <p className="mt-1.5 max-w-2xl text-sm text-slate-600">
-              Open <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs">docs/ecommerce-erd.drawio</code> directly in{' '}
-              <strong>app.diagrams.net</strong> to edit, export PNG/PDF, or inspect the crow&apos;s-foot relationships.
+              Open <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs">docs/ecommerce-erd.drawio</code> in{' '}
+              <strong>app.diagrams.net</strong> to view or export the full diagram.
             </p>
           </div>
 
@@ -124,7 +105,7 @@ export default function ErdPage() {
             <a
               href="/ecommerce-erd.drawio"
               download="ecommerce-erd.drawio"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-blue-600"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               <Download className="h-4 w-4" />
               Download .drawio
@@ -138,23 +119,14 @@ export default function ErdPage() {
               Open app.diagrams.net
               <ExternalLink className="h-4 w-4" />
             </a>
-            <button
-              type="button"
-              onClick={copyMermaid}
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-            >
-              <Copy className="h-4 w-4" />
-              Copy Mermaid
-            </button>
           </div>
         </div>
 
-        {/* Relationship Pills */}
         <div className="mt-6 grid gap-3 border-t border-slate-100 pt-5 sm:grid-cols-2 lg:grid-cols-4">
           {RELATIONS.map((rel) => (
             <div
               key={rel.from}
-              className="flex items-center gap-2.5 rounded-2xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs"
+              className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs"
             >
               <Link2 className="h-4 w-4 shrink-0 text-blue-600" />
               <div>
@@ -168,12 +140,11 @@ export default function ErdPage() {
         </div>
       </div>
 
-      {/* 5 Tables Grid */}
       <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {TABLES.map((tbl) => (
           <div
             key={tbl.name}
-            className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs"
+            className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
           >
             <div className={`${tbl.accent} flex items-center justify-between px-4 py-3 text-white`}>
               <span className="font-mono text-sm font-bold">{tbl.name}</span>

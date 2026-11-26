@@ -277,11 +277,11 @@ export default function CheckoutPage() {
     }`;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex items-center gap-3 text-sm text-slate-500">
         <Link to="/cart" className="inline-flex items-center gap-1 hover:text-slate-900">
           <ArrowLeft className="h-4 w-4" />
-          Shopping Cart
+          Cart
         </Link>
         <span>/</span>
         <span className="font-semibold text-slate-900">Checkout</span>
@@ -298,14 +298,10 @@ export default function CheckoutPage() {
       >
         {/* Left: Customer Form & Shipping Method */}
         <div className="space-y-6 lg:col-span-7">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xs sm:p-8">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
             <h2 className="text-lg font-bold text-slate-900">
               Customer Information
             </h2>
-            <p className="mt-1 text-xs text-slate-500">
-              Maps directly to <code className="rounded bg-slate-100 px-1">customers</code>{' '}
-              in the 5-table ERD.
-            </p>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div>
