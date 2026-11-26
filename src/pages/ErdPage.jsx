@@ -1,9 +1,8 @@
-import { Database, Download, ExternalLink, Link2 } from 'lucide-react';
+import { Download, ExternalLink } from 'lucide-react';
 
 const TABLES = [
   {
     name: 'customers',
-    accent: 'bg-slate-900',
     columns: [
       { key: 'PK', name: 'id', type: 'bigint' },
       { key: '', name: 'first_name', type: 'varchar(100)' },
@@ -16,7 +15,6 @@ const TABLES = [
   },
   {
     name: 'categories',
-    accent: 'bg-sky-700',
     columns: [
       { key: 'PK', name: 'id', type: 'bigint' },
       { key: '', name: 'name', type: 'varchar(255)' },
@@ -28,7 +26,6 @@ const TABLES = [
   },
   {
     name: 'products',
-    accent: 'bg-blue-700',
     columns: [
       { key: 'PK', name: 'id', type: 'bigint' },
       { key: 'FK', name: 'category_id', type: 'bigint → categories.id' },
@@ -46,7 +43,6 @@ const TABLES = [
   },
   {
     name: 'orders',
-    accent: 'bg-indigo-700',
     columns: [
       { key: 'PK', name: 'id', type: 'bigint' },
       { key: 'FK', name: 'customer_id', type: 'bigint → customers.id' },
@@ -62,7 +58,6 @@ const TABLES = [
   },
   {
     name: 'order_items',
-    accent: 'bg-teal-700',
     columns: [
       { key: 'PK', name: 'id', type: 'bigint' },
       { key: 'FK', name: 'order_id', type: 'bigint → orders.id' },
@@ -84,75 +79,69 @@ const RELATIONS = [
 
 export default function ErdPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
-          <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider text-blue-700 uppercase">
-              <Database className="h-3.5 w-3.5" />
-              Database Design · 5 Tables
-            </div>
-            <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">
-              E-Commerce Order Database ERD
-            </h1>
-            <p className="mt-1.5 max-w-2xl text-sm text-slate-600">
-              Open <code className="rounded bg-slate-100 px-1.5 py-0.5 text-xs">docs/ecommerce-erd.drawio</code> in{' '}
-              <strong>app.diagrams.net</strong> to view or export the full diagram.
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="flex flex-col justify-between gap-6 border-b border-stone-200 pb-6 lg:flex-row lg:items-end">
+        <div>
+          <p className="text-[11px] font-medium tracking-[0.14em] text-stone-400 uppercase">
+            Database Schema · 5 Tables
+          </p>
+          <h1 className="mt-1.5 text-3xl font-semibold tracking-tight text-neutral-950">
+            E-Commerce Order Database ERD
+          </h1>
+          <p className="mt-1.5 text-sm text-stone-500">
+            Open <code className="rounded bg-stone-100 px-1.5 py-0.5 text-xs">docs/ecommerce-erd.drawio</code> in{' '}
+            <strong>app.diagrams.net</strong> to inspect or export the diagram.
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-2.5">
+          <a
+            href="/ecommerce-erd.drawio"
+            download="ecommerce-erd.drawio"
+            className="inline-flex items-center gap-2 rounded-md bg-neutral-950 px-4 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-neutral-800"
+          >
+            <Download className="h-3.5 w-3.5" />
+            Download .drawio
+          </a>
+          <a
+            href="https://app.diagrams.net/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-stone-300 bg-white px-4 py-2.5 text-xs font-medium text-neutral-900 transition hover:border-neutral-900"
+          >
+            Open app.diagrams.net
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
+      </div>
+
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {RELATIONS.map((rel) => (
+          <div
+            key={rel.from}
+            className="rounded-md border border-stone-200 bg-[#FAFAFA] px-3.5 py-2.5 text-xs"
+          >
+            <p className="font-mono font-medium text-neutral-950">
+              {rel.from} → {rel.to}
             </p>
+            <p className="mt-0.5 text-stone-500">{rel.label}</p>
           </div>
-
-          <div className="flex flex-wrap gap-2.5">
-            <a
-              href="/ecommerce-erd.drawio"
-              download="ecommerce-erd.drawio"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
-            >
-              <Download className="h-4 w-4" />
-              Download .drawio
-            </a>
-            <a
-              href="https://app.diagrams.net/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-            >
-              Open app.diagrams.net
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-3 border-t border-slate-100 pt-5 sm:grid-cols-2 lg:grid-cols-4">
-          {RELATIONS.map((rel) => (
-            <div
-              key={rel.from}
-              className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2.5 text-xs"
-            >
-              <Link2 className="h-4 w-4 shrink-0 text-blue-600" />
-              <div>
-                <p className="font-mono font-semibold text-slate-900">
-                  {rel.from} → {rel.to}
-                </p>
-                <p className="text-slate-500">{rel.label}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
 
       <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {TABLES.map((tbl) => (
           <div
             key={tbl.name}
-            className="overflow-hidden rounded-2xl border border-slate-200 bg-white"
+            className="overflow-hidden rounded-md border border-stone-200 bg-white"
           >
-            <div className={`${tbl.accent} flex items-center justify-between px-4 py-3 text-white`}>
-              <span className="font-mono text-sm font-bold">{tbl.name}</span>
-              <span className="rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-semibold">
+            <div className="flex items-center justify-between border-b border-stone-200 bg-neutral-950 px-4 py-3 text-white">
+              <span className="font-mono text-sm font-semibold">{tbl.name}</span>
+              <span className="text-[11px] text-stone-300">
                 {tbl.columns.length} cols
               </span>
             </div>
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-stone-100">
               {tbl.columns.map((col) => (
                 <div
                   key={col.name}
@@ -160,23 +149,23 @@ export default function ErdPage() {
                 >
                   <div className="flex items-center gap-2">
                     <span
-                      className={`inline-flex w-8 justify-center rounded px-1 py-0.5 text-[10px] font-bold ${
+                      className={`inline-flex w-7 justify-center rounded px-1 py-0.5 text-[10px] font-semibold ${
                         col.key === 'PK'
-                          ? 'bg-blue-100 text-blue-700'
+                          ? 'bg-neutral-900 text-white'
                           : col.key === 'FK'
-                            ? 'bg-amber-100 text-amber-800'
+                            ? 'bg-stone-200 text-neutral-900'
                             : col.key === 'UK'
-                              ? 'bg-purple-100 text-purple-700'
+                              ? 'border border-stone-300 text-stone-700'
                               : 'text-transparent'
                       }`}
                     >
                       {col.key || '-'}
                     </span>
-                    <span className="font-mono font-semibold text-slate-900">
+                    <span className="font-mono font-medium text-neutral-950">
                       {col.name}
                     </span>
                   </div>
-                  <span className="font-mono text-[11px] text-slate-500">
+                  <span className="font-mono text-[11px] text-stone-500">
                     {col.type}
                   </span>
                 </div>

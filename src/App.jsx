@@ -12,7 +12,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <div className="flex min-h-screen flex-col bg-[#F8F9FA] text-slate-900">
+        <div className="flex min-h-screen flex-col bg-white text-neutral-900">
           <Navbar />
           <main className="flex-1">
             <Routes>

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @layer base {
@@ -11,10 +11,10 @@
   }
 }
 
-@keyframes slideUpFade {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -23,5 +23,5 @@
 }
 
 .animate-slide-up {
-  animation: slideUpFade 0.22s ease-out forwards;
+  animation: fadeIn 0.2s ease-out forwards;
 }

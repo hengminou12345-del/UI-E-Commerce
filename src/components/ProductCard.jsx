@@ -1,4 +1,3 @@
-import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { FALLBACK_PRODUCT_IMAGE } from '../data/mockProducts';
 
@@ -6,8 +5,8 @@ export default function ProductCard({ product }) {
   const { addToCart } = useCart();
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/60">
-      <div className="aspect-[4/3] overflow-hidden bg-slate-100">
+    <article className="group flex flex-col">
+      <div className="aspect-[4/4] overflow-hidden rounded-md bg-[#F4F4F2]">
         <img
           src={product.image_url || FALLBACK_PRODUCT_IMAGE}
           onError={(e) => {
@@ -15,26 +14,29 @@ export default function ProductCard({ product }) {
           }}
           alt={product.name}
           loading="lazy"
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.03]"
         />
       </div>
 
-      <div className="flex flex-1 flex-col p-5">
-        <h2 className="text-lg font-bold text-slate-900">{product.name}</h2>
-        <p className="mt-1 line-clamp-1 text-xs text-slate-500">
-          {product.description}
-        </p>
+      <div className="mt-4 flex flex-1 flex-col">
+        <div className="flex items-baseline justify-between gap-2">
+          <h2 className="text-[15px] font-semibold tracking-tight text-neutral-950">
+            {product.name}
+          </h2>
+          <span className="tabular-nums text-[15px] font-semibold text-neutral-950">
+            ${Number(product.price).toFixed(2)}
+          </span>
+        </div>
 
-        <p className="mt-4 text-xl font-extrabold text-slate-900">
-          ${Number(product.price).toFixed(2)}
+        <p className="mt-1 line-clamp-1 text-xs text-stone-500">
+          {product.description}
         </p>
 
         <button
           type="button"
           onClick={() => addToCart(product, 1)}
-          className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.99]"
+          className="mt-4 w-full rounded-md border border-neutral-900 bg-white px-4 py-2.5 text-xs font-medium tracking-wide text-neutral-950 transition hover:bg-neutral-950 hover:text-white active:scale-[0.99]"
         >
-          <ShoppingCart className="h-4 w-4" />
           Add to Cart
         </button>
       </div>
