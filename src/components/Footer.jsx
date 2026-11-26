@@ -12,9 +12,6 @@ export default function Footer() {
           <Link to="/cart" className="hover:text-neutral-900">
             Cart
           </Link>
-          <Link to="/erd" className="hover:text-neutral-900">
-            Database ERD
-          </Link>
         </div>
       </div>
     </footer>
