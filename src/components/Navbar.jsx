@@ -11,9 +11,16 @@ export default function Navbar() {
         <div className="flex items-center gap-8">
           <Link
             to="/"
-            className="text-xl font-bold tracking-tight text-neutral-950"
+            className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-neutral-950"
           >
-            atelier<span className="text-stone-400">.</span>
+            <img
+              src="/logo.png"
+              alt="atelier logo"
+              className="h-7 w-7 object-contain mix-blend-multiply"
+            />
+            <span>
+              atelier<span className="text-stone-400">.</span>
+            </span>
           </Link>
 
           <nav className="flex items-center gap-6">
