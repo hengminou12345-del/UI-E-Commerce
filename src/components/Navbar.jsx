@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Database, ShoppingBag, Store } from 'lucide-react';
+import { ShoppingBag, Store } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function Navbar() {
@@ -27,10 +27,6 @@ export default function Navbar() {
         <nav className="flex items-center gap-1.5 sm:gap-2">
           <NavLink to="/" end className={navLinkClass}>
             Products
-          </NavLink>
-          <NavLink to="/erd" className={navLinkClass}>
-            <Database className="h-3.5 w-3.5" />
-            ERD
           </NavLink>
           <Link
             to="/cart"
