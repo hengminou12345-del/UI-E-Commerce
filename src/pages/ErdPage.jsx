@@ -96,7 +96,7 @@ export default function ErdPage() {
 
         <div className="flex flex-wrap gap-2.5">
           <a
-            href="/ecommerce-erd.drawio"
+            href={`${import.meta.env.BASE_URL}ecommerce-erd.drawio`}
             download="ecommerce-erd.drawio"
             className="inline-flex items-center gap-2 rounded-md bg-neutral-950 px-4 py-2.5 text-xs font-medium tracking-wide text-white transition hover:bg-neutral-800"
           >

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,7 +10,7 @@ import ErdPage from './pages/ErdPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <CartProvider>
         <div className="flex min-h-screen flex-col bg-white text-neutral-900">
           <Navbar />
@@ -26,6 +26,6 @@ export default function App() {
           <ToastContainer />
         </div>
       </CartProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

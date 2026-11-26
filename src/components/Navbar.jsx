@@ -14,7 +14,7 @@ export default function Navbar() {
             className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-neutral-950"
           >
             <img
-              src="/logo.png"
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="atelier logo"
               className="h-7 w-7 object-contain mix-blend-multiply"
             />
